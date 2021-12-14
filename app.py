@@ -104,6 +104,9 @@ def index():
             flash('Invalid title or year!')  
             return redirect(url_for('index'))  # 重定向回主页
         flash('Item created.')
+        movie = Movie(title=title, year=year)
+        db.session.add(movie)
+        db.session.commit()
         return redirect(url_for('index'))  # 重定向回主页
 
     movies = Movie.query.all()
